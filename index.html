@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#d6336c">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Baila Pro">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<title>Baila Pro · Salsa & Bachata</title>
+<style>
+:root{--bg:#fff8f3;--card:#fff;--tx:#2a1a1a;--mut:#7a6561;--ac:#d6336c;--ac2:#f08c00;--bd:#f0ddd2;--ok:#2f9e44;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#171012;--card:#241a1d;--tx:#f6ebe8;--mut:#b49c97;--ac:#ff6b9a;--ac2:#ffa94d;--bd:#3a2a2e;--ok:#69db7c;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#171012;--card:#241a1d;--tx:#f6ebe8;--mut:#b49c97;--ac:#ff6b9a;--ac2:#ffa94d;--bd:#3a2a2e;--ok:#69db7c;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;max-width:640px;margin-inline:auto;padding:16px 14px 40px}
+header h1{margin:0;font-size:24px;letter-spacing:-.3px}
+header p{margin:2px 0 12px;color:var(--mut);font-size:14px}
+.bar{height:8px;background:var(--bd);border-radius:9px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--ac),var(--ac2));transition:width .3s}
+.pct{font-size:12px;color:var(--mut);margin:4px 0 10px}
+nav{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;padding:2px 0 8px}
+nav button{border:1px solid var(--bd);background:var(--card);color:var(--tx);border-radius:12px;padding:8px 3px;font-size:12px;line-height:1.15;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:58px}
+nav button span{font-size:20px}
+nav button.on{background:var(--ac);border-color:var(--ac);color:#fff;font-weight:600}
+.ai{width:100%;border:none;border-radius:12px;padding:13px;margin-bottom:9px;font-size:15.5px;font-weight:700;color:#fff;background:linear-gradient(135deg,var(--ac),var(--ac2));cursor:pointer}
+.vd{display:inline-block;margin-top:6px;font-size:13px;font-weight:600;color:var(--ac);text-decoration:none;border:1px solid var(--ac);border-radius:14px;padding:3px 10px}
+.form{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:12px;display:grid;gap:10px}
+.form label{display:grid;gap:4px;font-size:13px;color:var(--mut)}
+.form select,.form textarea{font:inherit;font-size:15px;padding:9px;border-radius:9px;border:1px solid var(--bd);background:var(--bg);color:var(--tx);width:100%}
+.go{border:none;border-radius:10px;padding:12px;font-size:15px;font-weight:700;background:var(--ac);color:#fff;cursor:pointer}
+.go:disabled{opacity:.6}
+.out{margin-top:12px;font-size:14.5px;overflow-wrap:anywhere}
+.out h3{margin:14px 0 4px;font-size:16px;color:var(--ac)}
+.out p{margin:4px 0}
+.out li{margin:3px 0 3px 18px}
+.intro{background:var(--card);border:1px solid var(--bd);border-left:4px solid var(--ac);border-radius:12px;padding:12px 14px;margin:6px 0 12px}
+.intro h2{margin:0 0 4px;font-size:19px}
+.intro p{margin:0;color:var(--mut);font-size:14px}
+.it{display:flex;gap:12px;background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:12px;margin-bottom:9px;cursor:pointer}
+.it input{width:22px;height:22px;accent-color:var(--ok);flex:none;margin-top:2px}
+.it b{display:block;font-size:15.5px}
+.it span{display:block;color:var(--mut);font-size:14px;margin-top:2px}
+.it.done{opacity:.6}
+.it.done b{text-decoration:line-through}
+.tip{background:linear-gradient(135deg,var(--ac),var(--ac2));color:#fff;border-radius:12px;padding:12px 14px;font-size:14px;margin-top:12px}
+.tip b{display:block;margin-bottom:2px}
+.rst{margin-top:18px;background:none;border:none;color:var(--mut);font-size:13px;text-decoration:underline;cursor:pointer}
+.day{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:10px 12px;margin-top:10px}.day h3{margin:0 0 4px;color:var(--ac);font-size:17px}.sec{font-weight:700;font-size:14px;margin:10px 0 2px}.sec em{font-style:normal;font-size:11px;background:var(--ac2);color:#fff;border-radius:8px;padding:1px 6px;margin-left:6px}.ex{display:flex;gap:8px;font-size:14px;margin:5px 0;align-items:flex-start}.ex input{width:20px;height:20px;accent-color:var(--ok);flex:none}.ex small{display:block;color:var(--mut);font-size:13px}.rest{margin-top:12px;font-size:13px;color:var(--mut)}.sm{margin-top:10px;width:100%;background:none;border:1px solid var(--ac);color:var(--ac);border-radius:10px;padding:10px;font-size:14px;font-weight:600;cursor:pointer}
+.it span.rx,.ex .rx{display:block;margin-top:4px;font-size:12.5px;font-weight:700;color:var(--ac2)}.day h3 small{color:var(--mut);font-weight:500;font-size:12.5px}
+.ov{position:fixed;inset:0;z-index:50;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center;padding:calc(env(safe-area-inset-top,0px) + 16px) 18px calc(env(safe-area-inset-bottom,0px) + 16px)}
+.ov[hidden]{display:none}
+.ov .k{font-size:13px;font-weight:800;letter-spacing:2px;color:#fff;padding:5px 14px;border-radius:14px}
+.ov .n{font-size:26px;font-weight:800}.ov .u{color:var(--mut);font-size:15px}
+.ov .t{font-size:84px;font-weight:800;font-variant-numeric:tabular-nums;line-height:1;margin:8px 0}
+.ov .pb{width:100%;max-width:420px;height:8px;background:var(--bd);border-radius:9px;overflow:hidden}.ov .pb i{display:block;height:100%;background:var(--ac)}
+.ov .x{font-size:13px;color:var(--mut)}
+.ov .cs{display:flex;gap:8px;width:100%;max-width:420px;margin-top:10px}.ov .cs button{flex:1;padding:14px 4px;border-radius:12px;border:1px solid var(--bd);background:var(--card);color:var(--tx);font-size:15px;font-weight:600;cursor:pointer}
+.it.hm{margin-bottom:0;border-radius:12px 12px 0 0}.mo{background:var(--card);border:1px solid var(--bd);border-top:none;border-radius:0 0 12px 12px;padding:8px 12px;margin:0 0 9px;font-size:14px}.mo summary{cursor:pointer;color:var(--ac);font-weight:600}.mo div{white-space:pre-line;margin-top:6px}
+.mo table{border-collapse:collapse;width:100%;font-size:13px;margin:6px 0}.mo th,.mo td{border:1px solid var(--bd);padding:6px;text-align:left;vertical-align:top}.mo th{background:var(--bg)}
+.mo.bx{border-top:1px solid var(--bd);border-radius:12px;margin:0 0 12px;padding:10px 12px}.mo.bx summary{font-weight:800;font-size:16px;color:var(--tx)}
+button,.it,.mo summary,select{transition:background .15s,border-color .15s,color .15s,transform .15s,box-shadow .15s}
+nav button:hover,nav button:focus-visible{border-color:var(--ac);background:color-mix(in srgb,var(--ac) 14%,var(--card));transform:translateY(-2px);box-shadow:0 4px 10px color-mix(in srgb,var(--ac) 25%,transparent)}
+nav button.on,nav button.on:hover,nav button.on:focus-visible{background:var(--ac);border-color:var(--ac);color:#fff;box-shadow:0 4px 12px color-mix(in srgb,var(--ac) 45%,transparent)}
+.it:hover,.ex:hover{border-color:var(--ac)}
+.it:has(input:checked){border-color:var(--ok)}
+.go:hover,.ai:hover{filter:brightness(1.12);transform:translateY(-1px);box-shadow:0 4px 12px color-mix(in srgb,var(--ac) 40%,transparent)}
+.sm:hover,.vd:hover,.ov .cs button:hover{background:var(--ac);color:#fff;border-color:var(--ac)}
+.mo summary:hover{text-decoration:underline}
+select:hover,select:focus{border-color:var(--ac);outline:none}
+button:focus-visible,summary:focus-visible,a:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+button:active{transform:scale(.97)}
+.avs{width:100%;max-height:250px;background:var(--bg);border-radius:10px;display:block}.avs polyline{fill:none;stroke-linecap:round;stroke-linejoin:round}.avs .p0,.avs .p1{stroke:var(--mut);stroke-width:5;opacity:.75}.avs .p2{stroke:var(--tx);stroke-width:8}.avs .p3,.avs .p4{stroke:var(--ac);stroke-width:5.5}.avs circle{fill:var(--ac2)}.agr{stroke:var(--bd);stroke-width:2}.abx{fill:var(--bd);stroke:var(--mut)}.avc{text-align:center;font-weight:700;color:var(--ac);margin-top:8px;min-height:2.6em}
+.vl{display:block;margin:12px 0 2px;font-size:15px;color:var(--ac)}.mo video{display:block;width:100%;max-width:300px;margin:6px auto;border-radius:10px;background:#000}
+</style>
+</head>
+<body>
+<header>
+<h1>💃 Baila Pro</h1>
+<p>Entrenamiento para bailarines de salsa y bachata</p>
+<div class="bar"><i id="bar"></i></div>
+<div class="pct" id="pct"></div>
+</header>
+<button class="ai" id="aib">📅 Crear mi plan semanal</button>
+<nav id="nav"></nav>
+<main id="main"></main>
+<button class="rst" id="rst">Reiniciar progreso</button>
+<div class="ov" id="pl" hidden></div>
+<script>
+const S=[
+{n:"Resistencia",e:"<svg width='1em' height='1em' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round' style='vertical-align:-.15em'><path d='M12 3v8M12 11l-3 3M12 11l3 3'/><path d='M10 9C7 9 4 14 4 18c0 2 1.5 3 3 2.5 2-.5 3-2 3-4z'/><path d='M14 9c3 0 6 5 6 9 0 2-1.500 3-3 2.500-2-.5-3-2-3-4z'/></svg>",h:"Resistencia física",p:"Un show exige sostener intensidad alta durante varios minutos sin perder técnica.",
+i:[["Bloques de baile continuo","4 temas seguidos de 4–5 min sin parar. Descansá 90 s entre bloques. Subí un tema por semana."],
+["Cardio base","2–3 veces por semana, 30–40 min a ritmo conversable (trote, bici o remo) para mejorar la recuperación."],
+["Intervalos 30/30","30 s de footwork rápido a tope + 30 s de marcha suave, 10 rondas. Es el simulador de un pico de show."],
+["Rutina doble","Bailá tu coreografía completa dos veces seguidas. Si la segunda sale limpia, el show real te va a sobrar."],
+["Respiración en movimiento","Inhalá por la nariz en los pasos suaves y exhalá fuerte en saltos y giros. Evitá aguantar el aire."]],
+t:"Entrená la resistencia con la música a un tempo más rápido que el de show: en escena todo se siente más liviano."},
+{n:"Energía",e:"⚡",h:"Energía física",p:"La energía se administra: cargas, gastás y recuperás con criterio.",
+i:[["Curva de intensidad","En coreografía, los picos y valles son la dinámica, intensidad y estructura visual o emocional de la pieza. No puede mantenerse siempre en el mismo nivel: necesita relieve.",`🏔️ ¿Qué son los Picos?
+
+Los picos son los momentos de máxima intensidad, energía o clímax dentro de la coreografía.
+• En la energía: Movimientos explosivos, saltos, giros rápidos, acrobacias o secciones donde todo el grupo baila al unísono con mucha fuerza.
+• En lo visual: Formaciones expandidas, niveles altos (bailarines de pie o cargadas/lifts) y movimientos muy acentuados que capturan por completo la atención del público.
+• En la emoción: El punto de mayor tensión dramática o euforia de la historia que se está contando.
+
+🪵 ¿Qué son los Valles?
+
+Los valles son los momentos de calma, transición o baja intensidad que contrastan con los picos.
+• En la energía: Movimientos lentos, fluidos, sutiles o pausas dramáticas (silencios de movimiento).
+• En lo visual: Niveles bajos (bailarines en el suelo), formaciones agrupadas o compactas, o momentos donde solo un solista se mueve mientras el resto se mantiene estático.
+• En la emoción: Momentos de introspección, tristeza, vulnerabilidad o preparación antes de la siguiente gran sección.
+
+<b>¿Por qué son importantes en una coreografía?</b>
+<div style="overflow-x:auto"><table><tr><th>Característica</th><th>Picos (Altos)</th><th>Valles (Bajos)</th></tr><tr><td>Función principal</td><td>Generar impacto, sorpresa y emoción.</td><td>Dar un «respiro» al espectador y al bailarín; construir tensión.</td></tr><tr><td>Niveles corporales</td><td>Saltos, cargadas, posiciones erguidas.</td><td>Trabajo de suelo, cuclillas, torsos inclinados.</td></tr><tr><td>Relación musical</td><td>Coinciden con el coro, el drop o acentos fuertes.</td><td>Coinciden con las estrofas, silencios o melodías suaves.</td></tr></table></div>
+El secreto de una gran coreografía radica en el contraste. Sin los valles, los picos no se sentirían tan impactantes; y sin los picos, los valles harían que la coreografía se sintiera plana.`],
+["Activación pre-escena","Ejercicios físicos, vocales y mentales justo antes de salir a escena, para conectar cuerpo, voz y emociones con lo que pide la escena.",`🎭 Rutina de Activación en 4 Pasos
+
+1. Activación Física (Cuerpo)
+
+El objetivo es liberar tensiones cotidianas y ganar presencia escénica.
+
+• Sacudida corporal: Comienza sacudiendo las manos, los brazos, las piernas y todo el cuerpo para soltar el estrés acumulado.
+
+• Estiramientos suaves: Rota los hombros, el cuello (en semicírculos) y la cadera para desbloquear las articulaciones.
+
+• Activación de la energía: Realiza saltos pequeños en el lugar o camina a diferentes ritmos (del 1 al 7) para elevar el ritmo cardíaco y el estado de alerta.
+
+2. Activación Vocal (Voz y Resonancia)
+
+Prepara el aparato fonador para proyectar sin lastimarse y mejorar la dicción.
+
+• Respiración diafragmática: Coloca una mano en el abdomen; inhala por la nariz inflando la panza y exhala lentamente con un sonido "Sssss".
+
+• Masaje facial: Masajea la mandíbula y las mejillas para relajar los músculos de la masticación.
+
+• Vocalización y resonadores: Emite el sonido "Mmmmm" (como imitando un motor) sintiendo la vibración en los labios, nariz y pecho. Luego, haz vibrar los labios ("Brrrr").
+
+• Articulación: Exagera la gesticulación repitiendo trabalenguas cortos o las vocales (A-E-I-O-U) abriendo mucho la boca.
+
+3. Activación Mental y Foco (Mente)
+
+Ayuda a apagar el "ruido del día" y centrarse en el aquí y el ahora.
+
+• Punto fijo o vacío: Cierra los ojos durante un minuto, concéntrate únicamente en tu respiración y limpia tu mente de pensamientos ajenos a la obra.
+
+• Atención al entorno: Abre los ojos y observa tres objetos a tu alrededor en detalle para anclarte en el presente.
+
+4. Conexión con la Escena (Personaje)
+
+El puente directo hacia la ficción que vas a habitar.
+
+• El "motor" del personaje: Camina por el espacio adoptando la postura corporal de tu personaje ( ¿Dónde lleva su peso?, ¿Cuál es su ritmo?).
+
+• Repaso del objetivo: Pregúntate justo antes de entrar: ¿Qué quiero lograr en esta escena? y ¿Qué acabo de hacer justo antes de este momento? (el antecedente inmediato).`],
+["Combustible","Para planificar tu alimentación de ensayo y show, usá una app de nutrición (por ejemplo MyFitnessPal o Cronometer) o consultá con un nutricionista deportivo."],
+["Hidratación","Usá una app de hidratación pensada para bailarines o deportistas (por ejemplo WaterMinder o Hydro Coach) para recordar y medir tu agua del día."],
+["Sueño y recuperación","7–9 h de sueño, un día de descanso real por semana y estiramiento suave después de ensayar."]],
+t:"Si sentís la energía en 100% desde el primer compás, vas a llegar vacío al final. Guardate un pico para el cierre."},
+{n:"Mentalidad",e:"🧠",h:"Trabajos de mentalidad",p:"El cuerpo ejecuta lo que la cabeza le permite. Entrená la mente como entrenás las piernas.",
+x:`Una rutina pre-escena es un conjunto de acciones físicas, mentales y vocales que realiza un actor justo antes de entrar a escena o filmar para estar completamente presente, disponible y conectado con la ficción. No existe una fórmula única, pero una estructura fija efectiva se divide en cuatro pilares secuenciales: cuerpo, voz, mente y conexión con el personaje.
+
+A continuación, tienes una rutina fija estructurada de 15 a 20 minutos que puedes adaptar a tus necesidades:
+
+<b>1. Preparación Física (Cuerpo) • 5 minutos</b>
+El objetivo es liberar la tensión acumulada y activar la energía corporal.
+
+• <b>Estiramiento general:</b> Estira brazos, piernas y espalda (vértebra por vértebra) para eliminar la rigidez del día.
+• <b>Sacudida de tensión:</b> Sacude las manos, los pies y todo el cuerpo vigorosamente durante 30 segundos mientras exhalas con sonido.
+• <b>Anclaje:</b> Quédate quieto, con los pies paralelos a la altura de las caderas, sintiendo el peso del cuerpo hacia el suelo.
+
+<b>2. Activación Vocal (Voz) • 3 minutos</b>
+Prepara el aparato fonador para que la voz responda a cualquier exigencia emocional sin lastimarte.
+
+• <b>Respiración intercostal:</b> Coloca las manos en las costillas, inhala por la nariz expandiendo los costados y exhala lentamente con el sonido "Sssss".
+• <b>Masaje facial:</b> Masajea la mandíbula (zona de la ATM), las mejillas y la frente para relajar los músculos de la expresión.
+• <b>Vibración de labios:</b> Haz el sonido de un motor de coche con los labios ("Brrrrr") subiendo y bajando el tono (glissando).
+• <b>Articulación:</b> Di un trabalenguas corto o exagera la gesticulación de las vocales (A, E, I, O, U) sin emitir sonido.
+
+<b>3. Enfoque Mental (Mente) • 3 minutos</b>
+Limpia la mente de tus problemas personales y del ruido del "backstage".
+
+• <b>La regla del espacio:</b> Imagina un círculo a tu alrededor. Deja fuera de ese círculo todo lo que te haya pasado hoy (el tráfico, una discusión, el cansancio).
+• <b>Atención al entorno:</b> Nombra mentalmente 3 cosas que ves a tu alrededor y 3 sonidos que escuchas en este momento. Esto te trae al presente exacto.
+
+<b>4. Conexión con la Ficción (Personaje) • 4 minutos</b>
+El paso final para entrar en la piel del personaje justo antes de que digan "acción" o salgas a escena.
+
+• <b>El monólogo interior:</b> Piensa qué estaba haciendo el personaje un minuto antes de que empiece la escena. ¿De dónde viene? ¿Qué acaba de pasarle?
+• <b>El objetivo inmediato:</b> Define en una sola frase qué quiere tu personaje en esta escena específica (ej: "Quiero que me pida perdón", "Quiero convencerlo de que no se vaya").
+• <b>La primera línea:</b> Repasa mentalmente (o susurrando) tu primera frase del texto y la última del actor que te da el pie.`,
+i:[["Visualización diaria","5 min con ojos cerrados: ver y sentir tu show completo, con público, luces y sonido. Incluí un error y cómo lo resolvés."],
+["Rutina pre-escena fija","Siempre los mismos 5 pasos (respirar, movilidad, frase mental, ropa, entrada). La repetición da calma."],
+["Respiración 4–6","Inhalá 4 s, exhalá 6 s, durante 2 min antes de salir. Baja las pulsaciones y los nervios."],
+["Diálogo interno","Cambiá «no me puedo equivocar» por «confío en mi trabajo y disfruto». Escribí tu frase ancla."],
+["Ensayo con distracciones","Practicá con ruido, mirando gente o con la música cortada un instante. Te vuelve resiliente al imprevisto."],
+["Diario post-show","Anotá 3 aciertos, 1 aprendizaje y 1 objetivo. Mejora sin castigo."]],
+t:"Los nervios y la emoción son la misma energía. Decile a tu cuerpo «estoy listo», no «estoy nervioso»."},
+{n:"Creación",e:"🎨",h:"Trabajos de creación",p:"Para que tu baile tenga firma propia y no sea una suma de pasos.",
+i:[["Restricción creativa","Improvisá 3 min usando solo 3 movimientos o solo un lado del cuerpo. Los límites despiertan ideas."],
+["Un tema, 5 lecturas","Bailá la misma canción siguiendo: clave, bajo, piano, voz y metales. Cada una cambia tu coreo."],
+["Banco de movimientos","Grabá 10 videos cortos por semana, guardá lo mejor y combinalos en frases nuevas de 8 tiempos."],
+["Historia en 3 actos","Definí inicio, conflicto y clímax. Elegí una emoción por acto y dejá que decida los pasos."],
+["Remix coreográfico","Tomá una coreo vieja y cambiale tempo, niveles, orden o rol de cada bailarín."],
+["Revisión en video","Mirá tu ensayo con sonido apagado: si se entiende la historia solo con el cuerpo, funciona."]],
+t:"Crear no es inventar de cero: es mirar tu material con ojos nuevos."},
+{n:"Fuerza muscular",e:"🔥",h:"Fuerza muscular y potencia en escena",p:"El estilo de baile se reconoce por la potencia, la velocidad de pies y la espectacularidad. Esto se construye con fuerza.",
+i:[["Sentadilla con salto","4×8. Aterrizá suave y en silencio, con rodillas alineadas. Base de saltos, giros y cambios de nivel."],
+["Pliometría de cajón o escalón","3×6 saltos explosivos. Mejora la potencia para pasos rápidos, elevaciones y aterrizajes."],
+["Core potente","Plancha 3×45 s, hollow hold 3×20 s y rotaciones con peso liviano. El core une el cuerpo en los giros."],
+["Glúteos e isquios","Puente de glúteos, peso muerto rumano liviano y zancadas. Dan impulso y protegen la espalda."],
+["Tren superior para elevaciones","Flexiones, remo y fondos 3×10. Necesario para cargadas, apoyos y movimientos acrobáticos."],
+["Footwork veloz","60 s de pasos rápidos en el lugar a 200+ BPM, 5 rondas. Pies livianos, rodillas flexibles, torso quieto."],
+["Frenado de giros","Girá y clavá en un punto con el peso ya sobre un pie. La potencia está en frenar con control."]],
+t:"Hacé fuerza 2–3 veces por semana y nunca el mismo día de un ensayo intenso de piernas. Respetá la técnica antes que el peso."},
+{n:"Técnica",e:"🎯",h:"Trabajos técnicos",p:"La base técnica sostiene todo lo demás.",
+i:[["Giros y spot","Giros en una baldosa: 10 simples, 10 dobles, 10 triples. Foco fijo y cabeza que llega primero."],
+["Transferencia de peso","Caminá en cámara lenta 2 min por salón. El peso llega completo antes de mover el otro pie."],
+["Footwork salsa","Tap, Suzy-Q, cuban motion y rodillas flexibles. Practicá cada uno 2 min a distintas velocidades."],
+["Isolaciones","Cabeza, pecho, caderas y hombros por separado. Es la base de las olas de bachata y shines limpios."],
+["Bachata: caderas y olas","Cadera con círculos, ochos y rebotes. Ola corporal de rodillas a cabeza sin mover los pies."],
+["Conexión de pareja","Marcación con tono medio, ni rígido ni flojo. Trabajá tensión y compresión con tu partner, sin música."]],
+t:"Practicá lento y perfecto. La velocidad llega cuando la técnica es limpia."},
+{n:"Escenario",e:"🎭",h:"Movilidad en el escenario",p:"Moverte bien por el espacio y tener un cuerpo móvil te da presencia y evita lesiones.",
+i:[["Mapa del escenario","Dividí el espacio en 9 zonas. Asigná a cada frase de tu coreo una zona distinta para llenar todo el espacio."],
+["Diagonales y trayectorias","Las diagonales se ven más grandes. Alterná líneas, círculos y zigzag para dar dinamismo."],
+["Niveles","Alto, medio y bajo en cada tema. Un cambio de nivel justo en la frase clave genera impacto."],
+["Entradas y salidas","Ensayá solo la entrada y la salida 10 veces. Son lo primero y lo último que recuerda el público."],
+["Orientación al público","Abrí el pecho a la audiencia en los giros y las poses. Practicá con una cámara como público."],
+["Movilidad articular","Rutina diaria de 10 min: tobillos, caderas (círculos 90/90), columna (gato-camello), hombros y cuello."]],
+t:"Ensayá en el escenario real o en un espacio de las mismas medidas. La distancia cambia todo."},
+{n:"Fuerza + elegancia",e:"✨",h:"Combinar fuerza energética y elegancia",p:"La potencia sin control es ruido. La elegancia sin energía es tibia. El arte está en el contraste.",
+i:[["Fuerte abajo, suave arriba","Pies y piernas potentes, brazos y cuello largos y relajados. Practicá una frase así."],
+["Ataque y soltura","Golpeá el paso con intención (ataque) y soltá enseguida. Se ve poderoso sin rigidez."],
+["Misma coreo, dos intensidades","Bailá tu rutina al 100% y luego al 40% manteniendo toda la calidad. Descubrís dónde está la elegancia."],
+["Cuello largo, mirada alta","Imaginá un hilo que tira de la coronilla. Mantené la postura aun cuando las piernas trabajan al máximo."],
+["Pausa con tensión","Congelá 1 tiempo después de un movimiento fuerte, con el cuerpo vivo. Esa pausa es pura elegancia."],
+["Manos y líneas","Terminá cada movimiento hasta la punta de dedos y pies. Los detalles pulen la fuerza."]],
+t:"Fuerza que se siente en el suelo, elegancia que se ve en el aire."},
+{n:"Matices",e:"🌈",h:"Bailar con diferentes matices",p:"Un mismo paso puede contar cien cosas según cómo lo bailes.",
+i:[["Rueda de calidades","Bailá 8 tiempos como: staccato (cortado), legato (fluido), pesado, ligero y vibrado. Rotá cada 30 s."],
+["Rueda de emociones","Alegría, nostalgia, seducción, enojo y humor sobre el mismo paso. Cambia tu cara y todo el cuerpo."],
+["Tamaño y velocidad","Hacé el movimiento grande, mediano y diminuto. Luego a doble y medio tiempo."],
+["Bachata: sensual, moderna y dominicana","Practicá cada versión con el mismo tema: sensual (cuerpo y ola), moderna (fluida y musical) y dominicana (pies y ritmo)."],
+["Salsa: ataque, juego y elegancia","Cambiá entre potencia, picardía y refinamiento sin cambiar los pasos."],
+["Escuchar la música","Cada 8 tiempos elegí un matiz distinto según lo que pida la canción: percusión fuerte, melodía suave o quiebre."]],
+t:"Los matices mantienen al público atento. Variá, aunque sea una pequeña diferencia, cada 8 tiempos."}
+];
+const V={4:"ejercicio técnica"};
+let cur=0,st={};
+const VID={"Sentadilla con salto":"sentadilla-con-salto.mp4","Pliometría de cajón o escalón":"pliometria-de-cajon.mp4","Core potente":[["Plancha","plancha.mp4"],["Rotaciones de torso","rotaciones-de-torso.mp4"],["Hollow hold","hollow-hold.mp4"]],"Glúteos e isquios":[["Zancadas","zancadas.mp4"],["Puente de glúteo","puente-de-gluteo.mp4"],["Peso muerto rumano","peso-muerto-rumano.mp4"]],"Tren superior para elevaciones":[["Remo","remo.mp4"],["Flexiones","flexiones.mp4"]],"Footwork veloz":"footwork-veloz.mp4"};
+const vdv=s=>'<details class="mo"><summary>▶ Ver video</summary><div>'+(typeof s=="string"?[["",s]]:s).map(v=>(v[0]?"<b class='vl'>"+v[0]+"</b>":"")+'<video controls playsinline preload="metadata" src="'+v[1]+'"></video>').join("")+"</div></details>";
+const vid=t=>(cur==4&&(VID[t]||t=="Frenado de giros"))?"":V[cur]?'<a class="vd" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query='+encodeURIComponent(t+" "+V[cur])+'">▶ Ver video</a>':"";
+try{st=JSON.parse(localStorage.getItem("bp")||"{}")}catch(e){}
+const sv=()=>{try{localStorage.setItem("bp",JSON.stringify(st))}catch(e){}};
+const nav=document.getElementById("nav"),main=document.getElementById("main");
+function prog(){let t=0,d=0;S.forEach((s,a)=>s.i.forEach((_,b)=>{t++;if(st[a+"-"+b])d++}));
+document.getElementById("bar").style.width=(d/t*100)+"%";
+document.getElementById("pct").textContent=d+" de "+t+" ejercicios completados";}
+const AV=[{"T":700,"box":0,"P":[[[0,12,18,6,10,0,0,-5,-4,0,0,70,0],"Pies al ancho de caderas, pecho arriba"],[[35,-38,-42,-45,-50,72,-8,68,-12,0,0,70,0],"Bajá con la espalda firme y los brazos atrás"],[[-4,165,170,160,165,0,0,-6,-8,18,0,70,0],"¡Explotá hacia arriba y extendé todo el cuerpo!"],[[28,55,65,50,60,60,-8,55,-12,0,0,70,0],"Aterrizá suave, rodillas alineadas con los pies"]]},{"T":850,"box":1,"P":[[[35,-40,-45,-45,-50,75,-8,72,-12,0,0,50,0],"Preparación: cuclilla corta con brazos atrás"],[[-5,150,155,145,150,45,-35,42,-38,6,14,105,0],"Saltá y llevá las rodillas arriba"],[[28,50,60,45,55,65,-8,60,-12,0,14,105,0],"Aterrizá en silencio sobre el cajón"],[[0,8,12,4,8,0,0,-4,-3,0,14,105,0],"Subí del todo y bajá con control"]]},{"T":1000,"box":0,"P":[[[78,2,90,0,90,-75,-75,-77,-77,0,0,18,1],"Plancha: cuerpo en línea recta y core firme"],[[78,2,90,0,90,-75,-75,75,-85,0,0,18,1],"Llevá una rodilla al pecho sin subir la cadera"]]},{"T":900,"box":0,"P":[[[0,3,4,-3,-2,0,0,-3,-2,0,0,70,0],"Posición inicial: pies al ancho de caderas"],[[62,-8,-10,-10,-12,28,-2,26,-2,0,0,70,0],"Peso muerto rumano: cadera atrás, espalda neutra"],[[0,3,4,-3,-2,0,0,-3,-2,0,0,70,0],"Subí empujando el piso con los glúteos"],[[4,0,2,-4,-2,75,0,-30,-70,0,0,70,0],"Zancada: rodilla trasera cerca del piso, torso erguido"]]},{"T":900,"box":0,"P":[[[63.5,0,0,0,0,-63.5,-63.5,-63.5,-63.5,0,0,20,1],"Plancha alta: manos bajo los hombros"],[[80.7,-90,40,-88,38,-80.7,-80.7,-80.7,-80.7,0,0,20,1],"Bajá el pecho controlado, cuerpo en línea"]]},{"T":170,"box":0,"P":[[[0,-20,60,25,75,28,-10,0,0,0,0,70,0],"Pies rápidos y livianos, torso quieto"],[[0,25,75,-20,60,0,0,28,-10,0,0,70,0],"Pies rápidos y livianos, torso quieto"]]},{"T":900,"box":0,"P":[[[0,70,75,-70,-75,0,0,-5,-4,0,0,70,0],"Preparación: pecho arriba, brazos abiertos"],[[0,70,75,-70,-75,72,-70,0,0,2,0,70,0],"Retiré y relevé: eje sobre un solo pie"],[[8,80,85,-80,-85,25,-10,-25,-15,0,0,70,0],"Frená el giro: clavá, rodillas suaves, brazos quietos"]]}];
+const avd=j=>'<details class="mo av" data-av="'+j+'"><summary>🧍 Ver cómo se hace (avatar)</summary><div><svg class="avs" id="av'+j+'" viewBox="0 0 160 140">'+(AV[j].box?'<rect class="abx" x="88" y="116" width="40" height="14" rx="2"/>':"")+'<line class="agr" x1="0" y1="130" x2="160" y2="130"/><polyline class="p0"/><polyline class="p1"/><polyline class="p2"/><polyline class="p3"/><polyline class="p4"/><circle r="7"/></svg><div class="avc" id="avc'+j+'"></div></div></details>';
+let avT=null;
+function avStop(){if(avT)cancelAnimationFrame(avT);avT=null}
+function avPose(a){const[t,u1,f1,u2,f2,h1,s1,h2,s2,lf,gy,px,hg]=a,r=Math.PI/180;
+const ch=(o,L,d)=>[o[0]+L*Math.sin(d*r),o[1]+L*Math.cos(d*r)];
+const sh=[30*Math.sin(t*r),-30*Math.cos(t*r)],P={h:[0,0],s:sh,d:[sh[0]+12*Math.sin(t*.7*r),sh[1]-12*Math.cos(t*.7*r)]};
+[["1",u1,f1,h1,s1],["2",u2,f2,h2,s2]].forEach(([k,u,f,h,q])=>{const e=ch(sh,17,u),kn=ch([0,0],22,h);P["e"+k]=e;P["w"+k]=ch(e,16,f);P["k"+k]=kn;P["a"+k]=ch(kn,22,q)});
+const ys=[P.a1[1],P.a2[1]];if(hg>.5)ys.push(P.w1[1],P.w2[1]);
+const pa=P.a2[1]<=P.a1[1]+.5?P.a1:P.a2,dx=px-pa[0],dy=130-gy-Math.max(...ys)-lf;
+for(const k in P)P[k]=[P[k][0]+dx,P[k][1]+dy];return P}
+function avRun(j){avStop();const E=AV[j],n=E.P.length,svg=g("av"+j),cp=g("avc"+j);if(!svg)return;
+const pl=svg.querySelectorAll("polyline"),hd=svg.querySelector("circle"),t0=performance.now();
+const pt=(...q)=>q.map(v=>v[0].toFixed(1)+","+v[1].toFixed(1)).join(" ");
+const fr=now=>{if(!document.body.contains(svg)){avT=null;return}
+const el=now-t0,i=Math.floor(el/E.T)%n,f=Math.min(1,Math.max(0,((el%E.T)/E.T-.15)/.7)),e=f*f*(3-2*f),a=E.P[i][0],b=E.P[(i+1)%n][0],c=a.map((v,k)=>v+(b[k]-v)*e),P=avPose(c),ft=x=>[x[0]+6,x[1]];
+pl[0].setAttribute("points",pt(P.s,P.e2,P.w2));pl[1].setAttribute("points",pt(P.h,P.k2,P.a2,ft(P.a2)));pl[2].setAttribute("points",pt(P.h,P.s));pl[3].setAttribute("points",pt(P.h,P.k1,P.a1,ft(P.a1)));pl[4].setAttribute("points",pt(P.s,P.e1,P.w1));
+hd.setAttribute("cx",P.d[0]);hd.setAttribute("cy",P.d[1]);cp.textContent=E.P[(i+1)%n][1];avT=requestAnimationFrame(fr)};
+avT=requestAnimationFrame(fr)}
+function draw(){
+avStop();
+nav.innerHTML="";S.forEach((s,k)=>{const b=document.createElement("button");b.innerHTML="<span>"+s.e+"</span>"+s.n;if(k==cur)b.className="on";b.onclick=()=>{cur=k;draw();scrollTo(0,0)};nav.appendChild(b)});
+if(cur<0){plan();return}const s=S[cur];let h='<div class="intro"><h2>'+s.e+" "+s.h+"</h2><p>"+s.p+"</p></div>"+(s.x?'<details class="mo bx"><summary>Rutina pre-escena fija</summary><div>'+s.x+"</div></details>":"");
+s.i.forEach((x,j)=>{const k=cur+"-"+j,c=st[k];h+='<label class="it'+(c?" done":"")+(x[2]||(cur==4&&VID[x[0]])?" hm":"")+'"><input type="checkbox" data-k="'+k+'"'+(c?" checked":"")+'><div><b>'+x[0]+"</b><span>"+x[1]+'</span><span class="rx">⏱ '+rx(cur,j)+"</span>"+vid(x[0])+"</div></label>"+(x[2]?'<details class="mo"><summary>Leer más</summary><div>'+x[2]+"</div></details>":"")+(cur==4&&VID[x[0]]?vdv(VID[x[0]]):"")});
+h+='<button class="go" id="ss" style="width:100%;margin-top:4px">▶ Iniciar sesión automática de esta sección</button><div class="tip"><b>💡 Tip pro</b>'+s.t+"</div>";
+main.innerHTML=h;
+main.querySelectorAll("details[data-av]").forEach(d=>d.ontoggle=()=>{if(d.open)avRun(+d.dataset.av);else avStop()});
+g("ss").onclick=()=>{const c=cur;sess(S[c].i.map((_,j)=>[c,j]),false,()=>{S[c].i.forEach((_,j)=>{if(P[c][j][1]>0)st[c+"-"+j]=true});sv();draw()})};
+main.querySelectorAll("input").forEach(i=>i.onchange=()=>{st[i.dataset.k]=i.checked;sv();i.closest(".it").classList.toggle("done",i.checked);prog()});
+prog();}
+document.getElementById("rst").onclick=()=>{st={};sv();draw()};
+document.getElementById("aib").onclick=()=>{cur=-1;draw();scrollTo(0,0)};
+let pl={d:"4",g:"Equilibrado",s:0};
+try{Object.assign(pl,JSON.parse(localStorage.getItem("bpplan")||"{}"))}catch(e){}
+const DAYS=["Lunes","Martes","Miércoles","Jueves","Viernes","Sábado","Domingo"];
+const T={3:[[4,5,2],[0,1,6],[3,7,8]],4:[[4,5],[0,1,2],[6,7],[3,8]],5:[[4,2],[5,6],[0,1],[7,8],[3]],6:[[4],[5,6],[0,1],[7],[8,3],[2]]};
+const W={3:[0,2,4],4:[0,1,3,5],5:[0,1,3,4,5],6:[0,1,2,3,4,5]};
+const G={"Equilibrado":[],"Preparar un show":[0,7],"Fuerza y potencia":[4,5],"Resistencia y energía":[0,1],"Elegancia y matices":[7,8,3]};
+function build(){const t=T[pl.d].map(a=>a.map(x=>[x,0]));
+(G[pl.g]||[]).forEach(e=>{const c=t.filter(a=>!a.some(z=>z[0]==e)).sort((a,b)=>a.length-b.length)[0];if(c)c.push([e,1])});return t}
+function keep(){try{localStorage.setItem("bpplan",JSON.stringify(pl))}catch(e){}}
+const P=[
+[[4,270,90],[1,1800,0],[10,30,30],[2,300,120],[1,300,0]],
+[[3,180,60],[1,600,0],[0,0,0],[0,0,0],[0,0,0]],
+[[1,300,0],[3,120,30],[1,120,0],[1,180,0],[3,180,60],[1,300,0]],
+[[3,180,45],[5,180,30],[1,600,0],[3,150,45],[2,240,60],[1,600,0]],
+[[4,40,60],[3,30,75],[3,45,45],[3,45,45],[3,45,60],[5,60,45],[4,45,45]],
+[[3,90,30],[1,120,0],[3,120,30],[4,60,20],[3,90,30],[3,120,30]],
+[[3,120,30],[3,120,30],[3,90,30],[10,30,20],[3,90,30],[1,600,0]],
+[[3,90,30],[3,90,30],[2,300,60],[3,60,30],[4,60,30],[3,60,20]],
+[[5,60,15],[5,60,15],[3,90,30],[3,120,30],[3,120,30],[3,120,30]]];
+const fm=s=>s>=60?Math.floor(s/60)+" min"+(s%60?" "+s%60+" s":""):s+" s";
+const mm=s=>Math.floor(s/60)+":"+String(s%60).padStart(2,"0");
+function rx(s,j){const [n,w,r]=P[s][j];if(!w)return"Hábito diario (no entra en la sesión automática)";return(n>1?n+" sets × ":"")+fm(w)+(n>1&&r?" · descanso "+fm(r):"")}
+function qb(list,wc){const q=[];
+if(wc)q.push({k:"warm",n:"Calentamiento",u:"Movilidad articular y activación",s:600});
+const L=list.filter(([s,j])=>P[s][j][1]>0);
+L.forEach(([s,j],x)=>{const [n,w,r]=P[s][j],nm=S[s].i[j][0];
+for(let a=1;a<=n;a++){q.push({k:"work",n:nm,u:S[s].n+(n>1?" · Set "+a+" de "+n:""),s:w});
+if(a<n&&r)q.push({k:"rest",n:"Descanso",u:"Sigue: "+nm+" · Set "+(a+1),s:r})}
+if(x<L.length-1)q.push({k:"rest",n:"Transición",u:"Sigue: "+S[L[x+1][0]].i[L[x+1][1]][0],s:30})});
+if(wc)q.push({k:"cool",n:"Estiramiento",u:"Elongación suave y respiración lenta",s:300});
+return q}
+const KL={warm:"CALENTAMIENTO",work:"TRABAJO",rest:"DESCANSO",cool:"ESTIRAMIENTO"},KC={warm:"#f08c00",work:"#d6336c",rest:"#2f9e44",cool:"#1c7ed6"};
+let Q=[],qi=0,endAt=0,left=0,paused=false,tm=null,onDone=null,wl=null,ac=null;
+const g=id=>document.getElementById(id);
+function beep(n){try{ac=ac||new(window.AudioContext||window.webkitAudioContext)();const o=ac.createOscillator(),v=ac.createGain();o.connect(v);v.connect(ac.destination);o.frequency.value=n?880:660;v.gain.value=.15;o.start();o.stop(ac.currentTime+(n?.4:.15))}catch(e){}try{navigator.vibrate&&navigator.vibrate(n?300:100)}catch(e){}}
+function rd(){const s=Q[qi];g("ov-k").textContent=KL[s.k];g("ov-k").style.background=KC[s.k];g("ov-n").textContent=s.n;g("ov-u").textContent=s.u;g("ov-t").textContent=mm(left);g("ov-t").style.color=KC[s.k];g("ov-p").style.width=(qi/Q.length*100)+"%";g("ov-x").textContent="Paso "+(qi+1)+" de "+Q.length}
+function s0(){left=Q[qi].s;endAt=Date.now()+left*1000;rd()}
+function nx(){qi++;if(qi>=Q.length)fin();else s0()}
+function stop(){clearInterval(tm);try{wl&&wl.release()}catch(e){}g("pl").hidden=true}
+function tk(){if(paused)return;const l=Math.max(0,Math.ceil((endAt-Date.now())/1000));if(l!=left){left=l;if(l>0&&l<=3)beep(0);rd()}if(l<=0){beep(1);nx()}}
+function fin(){clearInterval(tm);g("pl").innerHTML='<div class="n">🎉 ¡Sesión completada!</div><div class="u">Muy buen trabajo. Marcamos tus ejercicios como hechos.</div><button class="go" id="fb" style="width:100%;max-width:420px">Cerrar</button>';beep(1);try{onDone&&onDone()}catch(e){}g("fb").onclick=stop}
+function sess(list,wc,done){const q=qb(list,wc);if(!q.length)return;Q=q;qi=0;onDone=done;paused=false;
+const o=g("pl");o.hidden=false;
+o.innerHTML='<div class="k" id="ov-k"></div><div class="n" id="ov-n"></div><div class="u" id="ov-u"></div><div class="t" id="ov-t"></div><div class="pb"><i id="ov-p"></i></div><div class="x" id="ov-x"></div><div class="cs"><button id="o1">⏸ Pausa</button><button id="o2">⏭ Saltar</button><button id="o3">✕ Salir</button></div>';
+g("o1").onclick=()=>{paused=!paused;if(paused)g("o1").textContent="▶ Seguir";else{g("o1").textContent="⏸ Pausa";endAt=Date.now()+left*1000}};
+g("o2").onclick=nx;g("o3").onclick=stop;
+try{navigator.wakeLock.request("screen").then(l=>wl=l).catch(()=>{})}catch(e){}
+s0();clearInterval(tm);tm=setInterval(tk,250)}
+function plan(){
+const sel=(id,arr,v)=>'<select id="'+id+'">'+arr.map(x=>"<option"+(x==v?" selected":"")+">"+x+"</option>").join("")+"</select>";
+const t=build(),w=W[pl.d],D=[];
+let h='<div class="intro"><h2>📅 Mi plan semanal</h2><p>Incluye las 9 secciones, con sets y duraciones. Tocá «Iniciar sesión» y la app te guía sola hasta terminar.</p></div><div class="form"><label>Días de entrenamiento por semana'+sel("p1",["3","4","5","6"],pl.d)+'</label><label>Énfasis de la semana'+sel("p2",Object.keys(G),pl.g)+'</label></div>';
+t.forEach((day,i)=>{const L=[];let hh="";
+day.forEach(([s,r])=>{const it=S[s].i,tl=it.map((_,j)=>j).filter(j=>P[s][j][1]>0);
+hh+='<div class="sec">'+S[s].e+" "+S[s].n+(r?"<em>refuerzo</em>":"")+"</div>";
+[0,1].forEach(k=>{const j=tl[(pl.s*2+k)%tl.length],key="p"+i+"-"+s+"-"+j;L.push([s,j]);
+hh+='<label class="ex"><input type="checkbox" data-k="'+key+'"'+(st[key]?" checked":"")+'><div><b>'+it[j][0]+"</b><small>"+it[j][1]+'</small><span class="rx">⏱ '+rx(s,j)+"</span></div></label>"})});
+const tot=Math.round(qb(L,true).reduce((a,b)=>a+b.s,0)/60);
+h+='<div class="day"><h3>'+DAYS[w[i]]+" <small>· ~"+tot+' min con calentamiento</small></h3>'+hh+'<button class="go" data-d="'+i+'" style="width:100%;margin-top:10px">▶ Iniciar sesión automática</button></div>';D[i]=L});
+const rest=DAYS.filter((_,i)=>!w.includes(i));
+h+='<div class="rest">😴 Descanso: '+rest.join(", ")+'. Dormí bien y hacé movilidad suave.</div><button class="sm" id="vr">🔀 Variar ejercicios</button>';
+main.innerHTML=h;
+g("p1").onchange=e=>{pl.d=e.target.value;keep();plan()};
+g("p2").onchange=e=>{pl.g=e.target.value;keep();plan()};
+g("vr").onclick=()=>{pl.s++;keep();plan()};
+main.querySelectorAll(".ex input").forEach(i=>i.onchange=()=>{st[i.dataset.k]=i.checked;sv()});
+main.querySelectorAll("[data-d]").forEach(b=>b.onclick=()=>{const i=+b.dataset.d;sess(D[i],true,()=>{D[i].forEach(([s,j])=>{st["p"+i+"-"+s+"-"+j]=true});sv();plan()})});
+}
+draw();
+try{if("serviceWorker" in navigator&&location.protocol.startsWith("http"))navigator.serviceWorker.register("sw.js")}catch(e){}
+</script>
+</body>
+</html>

@@ -251,7 +251,7 @@ t:"Los matices mantienen al público atento. Variá, aunque sea una pequeña dif
 ];
 const V={4:"ejercicio técnica"};
 let cur=0,st={};
-const VID={"Sentadilla con salto":"sentadilla-con-salto.mp4","Pliometría de cajón o escalón":"pliometria-de-cajon.mp4","Core potente":[["Plancha","plancha.mp4"],["Rotaciones de torso","rotaciones-de-torso.mp4"],["Hollow hold","hollow-hold.mp4"]],"Glúteos e isquios":[["Zancadas","zancadas.mp4"],["Puente de glúteo","puente-de-gluteo.mp4"],["Peso muerto rumano","peso-muerto-rumano.mp4"]],"Tren superior para elevaciones":[["Remo","remo.mp4"],["Flexiones","flexiones.mp4"]],"Footwork veloz":"footwork-veloz.mp4"};
+const VID={"Sentadilla con salto":"sentadilla-con-salto.mp4","Pliometría de cajón o escalón":"pliometria-de-cajon.mp4","Core potente":[["Plancha","plancha.mp4"],["Rotaciones de torso","rotaciones-de-torso.mp4"],["Hollow hold","hollow-hold.mp4"]],"Glúteos e isquios":[["Zancadas","zancadas.mp4"],["Puente de glúteo","puente-de-gluteo.mp4"],["Peso muerto rumano","peso-muerto-rumano.mp4"]],"Tren superior para elevaciones":[["Remo","remo.mp4"],["Flexiones","flexiones.mp4"],["Fondos","fondos.mp4"]],"Footwork veloz":"footwork-veloz.mp4"};
 const vdv=s=>'<details class="mo"><summary>▶ Ver video</summary><div>'+(typeof s=="string"?[["",s]]:s).map(v=>(v[0]?"<b class='vl'>"+v[0]+"</b>":"")+'<video controls playsinline preload="metadata" src="'+v[1]+'"></video>').join("")+"</div></details>";
 const vid=t=>(cur==4&&(VID[t]||t=="Frenado de giros"))?"":V[cur]?'<a class="vd" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query='+encodeURIComponent(t+" "+V[cur])+'">▶ Ver video</a>':"";
 try{st=JSON.parse(localStorage.getItem("bp")||"{}")}catch(e){}

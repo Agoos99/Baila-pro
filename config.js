@@ -8,7 +8,7 @@ window.BP_CONFIG={
   PRICE_ARS:"",
   PRICE_USD:"",
   // Pegá acá tus links de pago (si queda vacío, el botón no aparece)
-  MP_LINK:"",
+  MP_LINK:"https://mpago.la/1XjjEsr",
   PAYPAL_LINK:"",
   HOTMART_LINK:"",
   // Contacto opcional (por ejemplo tu Instagram)

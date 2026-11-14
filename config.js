@@ -10,7 +10,7 @@ window.BP_CONFIG={
   // Pegá acá tus links de pago (si queda vacío, el botón no aparece)
   MP_LINK:"https://mpago.la/1XjjEsr",
   PAYPAL_LINK:"",
-  HOTMART_LINK:"",
+  HOTMART_LINK:"https://pay.hotmart.com/G108487497S",
   // Contacto opcional (por ejemplo tu Instagram)
   CONTACT_TEXT:"",
   CONTACT_LINK:"",

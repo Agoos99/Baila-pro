@@ -8,12 +8,12 @@ window.BP_CONFIG={
   PRICE_ARS:"",
   PRICE_USD:"",
   // Pegá acá tus links de pago (si queda vacío, el botón no aparece)
-  MP_LINK:"https://mpago.la/1XjjEsr",
+  MP_LINK:"",
   PAYPAL_LINK:"",
-  HOTMART_LINK:"https://pay.hotmart.com/G108487497S",
+  HOTMART_LINK:"https://go.hotmart.com/G108487497S",
   // Contacto opcional (por ejemplo tu Instagram)
-  CONTACT_TEXT:"",
-  CONTACT_LINK:"",
+  CONTACT_TEXT:"WhatsApp",
+  CONTACT_LINK:"https://wa.me/5491144179990",
   // Códigos válidos (no se ven los códigos, solo su huella). No lo modifiques.
   HASHES:[
     "21dc401b83847d04ec5393e99ac98c7e4ae9a9766f40dbb7fda74695e277ae31",
